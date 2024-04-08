@@ -8,6 +8,15 @@ const {createPagination} = require('express-handlebars-paginate')
 const bodyParser = require('body-parser');
 const { error } = require('jquery');
 const session = require('express-session');
+//redis config
+const redisStore = require('connect-redis').default;
+const { createClient } = require('redis');
+const redisClient = createClient({
+    // url: 'rediss://red-co9q45kf7o1s739d12mg:cQjWEWoUHh6tmiIsAKwUUaT2v31ahwyh@singapore-redis.render.com:6379'
+    url: 'redis://red-co9q45kf7o1s739d12mg:6379'
+})
+redisClient.connect().catch(console.error)
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -34,6 +43,7 @@ app.use(express.urlencoded({extended: false}))
 //session config
 app.use(session({
     secret: 'S3cret',
+    store: new redisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
     cookie: {
