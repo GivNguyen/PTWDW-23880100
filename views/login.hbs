@@ -22,27 +22,33 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="login-form">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>E-mail / Username</label>
-                            <input class="form-control" type="text" placeholder="First Name">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Password</label>
-                            <input class="form-control" type="text" placeholder="Last Name">
-                        </div>
-                        <div class="col-md-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Keep me signed in</label>
+                <form action="" method="post">
+                    <div class="login-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>E-mail / Username</label>
+                                <input class="form-control" type="email" placeholder="First Name" 
+                                    name="email">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                <input class="form-control" type="password" placeholder="Last Name"
+                                    name="password">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="newaccount"
+                                        name="keepSignedIn">
+                                    <label class="custom-control-label" for="newaccount">Keep me signed in</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn">Sign in</button>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <button class="btn">Submit</button>
-                        </div>
                     </div>
-                </div>
+                </form>
+                
             </div>
             
             <div class="col-md-6">    
@@ -53,7 +59,7 @@
                             <input class="form-control" type="text" placeholder="First Name">
                         </div>
                         <div class="col-md-6">
-                            <label>Last Name"</label>
+                            <label>Last Name</label>
                             <input class="form-control" type="text" placeholder="Last Name">
                         </div>
                         <div class="col-md-6">
@@ -65,7 +71,7 @@
                             <input class="form-control" type="text" placeholder="Mobile No">
                         </div>
                         <div class="col-md-12">
-                            <button class="btn">Submit</button>
+                            <button class="btn">Sign up</button>
                         </div>
                     </div>
                 </div>

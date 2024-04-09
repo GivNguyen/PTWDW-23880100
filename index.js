@@ -17,7 +17,8 @@ const redisClient = createClient({
     url: process.env.REDIS_URL
 })
 redisClient.connect().catch(console.error)
-
+const passport = require('./controllers/passport');
+const flash = require('connect-flash')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -51,18 +52,25 @@ app.use(session({
         httpOnly: true,
         maxAge: 20 * 60 * 1000 //20 phut session
     }
-}))
+}));
+//cau hinh su dung passport
+app.use(passport.initialize());
+app.use(passport.session());
+//cau hinh su dung connect-flash
+app.use(flash());
 //middleware tao gio hang trong session
 app.use((req, res, next) => {
     let Cart = require('./controllers/cart')
     req.session.cart = new Cart(req.session.cart ? req.session.cart : {})
     res.locals.quantity = req.session.cart.quantity;
-
+    res.locals.isLoggedIn = req.isAuthenticated();
     next();
 })
 //routes
 app.use('/', require('./routes/indexRouter'));
 app.use('/products', require('./routes/productsRouter'))
+//route authenticate dat truoc route cua user
+app.use('/users', require('./routes/authRouter'))
 app.use('/users', require('./routes/usersRouter'))
 app.use((req, res, next) => {
     res.status(404).render('error', {message: 'Bạn đã nhập sai đường dẫn!'})
