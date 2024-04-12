@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Password</label>
-                                <input class="form-control" type="password" placeholder="Last Name"
+                                <input class="form-control" type="password" placeholder="Password"
                                     name="password">
                             </div>
                             <div class="col-md-12">
@@ -45,6 +45,13 @@
                             <div class="col-md-12">
                                 <button class="btn">Sign in</button>
                             </div>
+                            {{#if loginMessage}}
+                            <div class="col-md-12">
+                                <div class="p-3 mt-3 alert alert-warning">
+                                    {{loginMessage}}
+                                </div>
+                            </div>
+                            {{/if}}
                         </div>
                     </div>
                 </form>
