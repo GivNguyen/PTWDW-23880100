@@ -1,5 +1,6 @@
 'use strict'
 
+const { error } = require('jquery');
 const passport = require('passport')
 const controller = {}
 
@@ -25,4 +26,10 @@ controller.login = (req, res, next) => {
     })(req, res, next);
 }
 
+controller.logout = (req, res, next) => {
+    req.logOut((error) => {
+        if (error) { return next(error); }
+        res.redirect('/')
+    })
+}
 module.exports = controller
