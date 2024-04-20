@@ -57,6 +57,9 @@
                             </div>
                             {{/if}}
                             <input type="hidden" name="reqUrl" value="{{reqUrl}}">
+                            <div class="col-md-12 py-3">
+                                <a href="/users/forgot">Forgot Password</a>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -64,38 +67,43 @@
             </div>
             
             <div class="col-md-6">   
-                <form action="/users/register" method="post">
+                <form action="/users/register" method="post" id="formRegister">
                     <div class="register-form">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>First Name</label>
                                 <input class="form-control" type="text" placeholder="First Name"
-                                name="firstName">
+                                name="firstName" required>
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name</label>
                                 <input class="form-control" type="text" placeholder="Last Name"
-                                name="lastName">
+                                name="lastName" required>
                             </div>
                             <div class="col-md-6">
                                 <label>E-mail</label>
                                 <input class="form-control" type="email" placeholder="E-mail"
-                                name="email">
+                                name="email"
+                                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile No</label>
                                 <input class="form-control" type="text" placeholder="Mobile No"
-                                name="mobile">
+                                name="mobile" required>
                             </div>
                             <div class="col-md-6">
                                 <label>Password</label>
                                 <input class="form-control" type="password" placeholder="Password"
-                                name="password">
+                                name="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Must contain at least one  number and one uppercase and lowercase letter, 
+                                and at least 8 or more characters" required onchange="checkPasswordConfirm('formRegister')">
                             </div>
                             <div class="col-md-6">
                                 <label>Confirm Password</label>
                                 <input class="form-control" type="password" placeholder="Confirm Password"
-                                name="confirmPassword">
+                                name="confirmPassword"
+                                onkeyup="checkPasswordConfirm('formRegister')">
                             </div>
                             <div class="col-md-12">
                                 <button class="btn">Sign up</button>
