@@ -75,14 +75,29 @@ controller.forgotPassword = async (req, res) => {
     //ktra email ton tai
     let user = await models.User.findOne({ where: {email} })
     if (user) {
-        return res.render('forgot-password', {done: true})
+        //tao link
+        const { sign } = require('./jwt');
+        const host = req.header('host')
+        const resetLink = `${req.protocol}://${host}/users/reset?token=${sign(email)}&email=${email}` 
+        //gui email
+        const { sendForgotPasswordMail } = require('./mail')
+        sendForgotPasswordMail(user, host, resetLink)
+            .then((result) => {
+                console.log('email has been sent')
+                return res.render('forgot-password', {done: true})
+            })
+            .catch(error => {
+                console.log(error.statusCode);
+                return res.render('forgot-password', {message: 'An error has occured when sending to your email. Please check your email address!'})
+            })
+        //thong bao thanh cong
+        
     } else {
+        //nguoc lai thong bao email khong ton tai
         res.render('forgot-password', { message: 'Email does not exist'})
     }
-    //tao link
-    //gui email
-    //thong bao thanh cong
-    //nguoc lai thong bao email khong ton tai
+    
+    
 }
 
 module.exports = controller
