@@ -47,7 +47,7 @@ router.get('/forgot', controller.showForgotPassword)
 router.post('/forgot', controller.forgotPassword)
 
 router.get('/reset', controller.showResetPassword)
-router.post('/reset', controller.showResetPassword)
+router.post('/reset', controller.resetPassword)
 
 
 module.exports = router;

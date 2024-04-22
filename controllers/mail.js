@@ -24,7 +24,7 @@ function sendForgotPasswordMail(user, host, resetLink) {
                     ],
                     Subject: "[EShop] Reset Password",
                     HTMLPart: `
-                    <p>Hi ${user.firsName} ${user.lastName},</p>
+                    <p>Hi ${user.firstName} ${user.lastName},</p>
                     <br/>
                     <p>You recently requested to reset the password for your EShop account. Click the link below to proceed.</p>
                     <br/>

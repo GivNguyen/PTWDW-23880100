@@ -100,4 +100,19 @@ controller.forgotPassword = async (req, res) => {
     
 }
 
+controller.showResetPassword = (req, res) => {
+    let email = req.query.email
+    let token = req.query.token
+    let { verify } = require('./jwt')
+    if (!token || !verify(token)) {
+        return res.render('reset-password', {expired: true})
+    } else {
+        return res.render('reset-password', { email, token })
+    }
+}
+
+controller.resetPassword = (req, res) => {
+
+}
+
 module.exports = controller
