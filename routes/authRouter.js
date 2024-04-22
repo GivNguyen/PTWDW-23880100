@@ -44,7 +44,17 @@ router.post('/register',
 )
 
 router.get('/forgot', controller.showForgotPassword)
-router.post('/forgot', controller.forgotPassword)
+router.post('/forgot',
+    body('email').trim().notEmpty().withMessage('Email is required!').isEmail().withMessage('Invalid email address'),
+    (req, res, next) => {
+        let message = getErrorMessage(req)
+        if (message) {
+            return res.render('forgot-password', { message });
+        }
+        next()
+    },
+    controller.forgotPassword
+);
 
 router.get('/reset', controller.showResetPassword)
 router.post('/reset', controller.resetPassword)
